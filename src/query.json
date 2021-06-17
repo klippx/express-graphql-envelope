@@ -1,0 +1,3 @@
+{
+    "query": "query test { hello { packageJSON { name version description main keywords devDependencies { nodemon __typename } dependencies { graphql express __typename } scripts { start } } }\n}"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "express-graphql-envelope",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test:envelope": "ab -n 10000 -c 15 -p src/query.json -T application/json -rk http://localhost:8080/",
+    "test:apollo": "ab -n 10000 -c 15 -p src/query.json -T application/json -rk http://localhost:3000/graphql"
+  },
+  "dependencies": {
+    "@envelop/core": "^0.3.0",
+    "@graphql-tools/schema": "^7.1.5",
+    "apollo-server": "^2.25.1",
+    "express": "^4.17.1",
+    "graphql": "^15.5.0"
+  },
+  "devDeplendencies": {
+    "nodemon": "1.18.4"
+  },
+  "keywords": [],
+  "devDependencies": {}
+}
