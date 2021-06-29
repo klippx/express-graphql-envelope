@@ -17,7 +17,7 @@ app.post("/", (req, res) => {
   const validationErrors = validate(schema, document);
 
   if (validationErrors.length > 0) {
-    return res.end(JSON.stringify({ errors: validationErrors }));
+    return res.send(JSON.stringify({ errors: validationErrors }));
   }
 
   Promise.resolve(contextFactory(req))
@@ -29,8 +29,8 @@ app.post("/", (req, res) => {
         contextValue: context,
       })
     )
-    .then((result) => res.end(JSON.stringify(result)))
-    .catch((e) => res.end(JSON.stringify({ error: e })));
+    .then((result) => res.send(JSON.stringify(result)))
+    .catch((e) => res.send(JSON.stringify({ error: e })));
 });
 
 //create a server object:
