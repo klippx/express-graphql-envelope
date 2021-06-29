@@ -9,7 +9,7 @@
     "test:apollo": "ab -n 10000 -c 15 -p src/query.json -T application/json -rk http://localhost:3000/graphql"
   },
   "dependencies": {
-    "@envelop/core": "^0.3.0",
+    "@envelop/core": "^0.3.1",
     "@graphql-tools/schema": "^7.1.5",
     "apollo-server": "^2.25.1",
     "express": "^4.17.1",
