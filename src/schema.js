@@ -1,4 +1,6 @@
 const { envelop, useSchema } = require("@envelop/core");
+const { useParserCache } = require("@envelop/parser-cache");
+const { useValidationCache } = require("@envelop/validation-cache");
 const { makeExecutableSchema } = require("@graphql-tools/schema");
 const resolvers = require("./resolver");
 
@@ -35,14 +37,18 @@ const schema = {
       packageJSON: PackageJson
     }
   `,
-  resolvers
-}
+  resolvers,
+};
 
 const executableSchema = makeExecutableSchema(schema);
 
 module.exports = {
   ...schema,
   getEnveloped: envelop({
-    plugins: [useSchema(executableSchema)]
-  })
-}
+    plugins: [
+      useSchema(executableSchema),
+      useParserCache(),
+      useValidationCache(),
+    ],
+  }),
+};
