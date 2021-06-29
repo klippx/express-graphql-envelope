@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon src/index.js",
-    "test:envelope": "ab -n 10000 -c 15 -p src/query.json -T application/json -rk http://localhost:8080/",
+    "test:envelope": "ab -n 100000 -c 15 -p src/query.json -T application/json -rk http://localhost:8080/",
     "test:apollo": "ab -n 10000 -c 15 -p src/query.json -T application/json -rk http://localhost:3000/graphql"
   },
   "dependencies": {

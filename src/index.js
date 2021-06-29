@@ -7,6 +7,8 @@ const app = express();
 app.use(express.json());
 app.get("/", (req, res) => res.send("OK!"));
 app.post("/", (req, res) => {
+  // Needed for fixing AB issues in some OSs
+  res.setHeader("Connection", "Keep-Alive");
   const { parse, validate, contextFactory, execute, schema } = getEnveloped({
     req,
   });
