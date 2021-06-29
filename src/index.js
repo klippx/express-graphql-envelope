@@ -29,7 +29,7 @@ app.post("/", (req, res) => {
         contextValue: context,
       })
     )
-    .then((r) => res.end(JSON.stringify(result)))
+    .then((result) => res.end(JSON.stringify(result)))
     .catch((e) => res.end(JSON.stringify({ error: e })));
 });
 
