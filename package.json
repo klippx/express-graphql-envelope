@@ -15,9 +15,8 @@
     "express": "^4.17.1",
     "graphql": "^15.5.0"
   },
-  "devDeplendencies": {
+  "devDependencies": {
     "nodemon": "1.18.4"
   },
-  "keywords": [],
-  "devDependencies": {}
+  "keywords": []
 }
