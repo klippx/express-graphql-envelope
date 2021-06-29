@@ -6,7 +6,7 @@ const { getEnveloped, typeDefs, resolvers } = require("./schema");
 const app = express();
 app.use(express.json());
 app.get("/", (req, res) => res.send("OK!"));
-app.post("/", async (req, res) => {
+app.post("/", (req, res) => {
   const { parse, validate, contextFactory, execute, schema } = getEnveloped({
     req,
   });
@@ -20,17 +20,17 @@ app.post("/", async (req, res) => {
     return res.end(JSON.stringify({ errors: validationErrors }));
   }
 
-  // Build the context and execute
-  const context = await contextFactory(req);
-  const result = await execute({
-    document,
-    schema,
-    variableValues: variables,
-    contextValue: context,
-  });
-
-  // Send the response
-  res.end(JSON.stringify(result));
+  Promise.resolve(contextFactory(req))
+    .then((context) =>
+      execute({
+        document,
+        schema,
+        variableValues: variables,
+        contextValue: context,
+      })
+    )
+    .then((r) => res.end(JSON.stringify(result)))
+    .catch((e) => res.end(JSON.stringify({ error: e })));
 });
 
 //create a server object:
