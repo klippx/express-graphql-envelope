@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@envelop/core": "^0.3.1",
+    "@envelop/parser-cache": "0.2.0",
+    "@envelop/validation-cache": "0.2.0",
     "@graphql-tools/schema": "^7.1.5",
     "apollo-server": "^2.25.1",
     "express": "^4.17.1",

@@ -1,16 +1,14 @@
 const express = require("express");
-const { ApolloServer, gql } = require('apollo-server');
-
+const { ApolloServer, gql } = require("apollo-server");
 
 const { getEnveloped, typeDefs, resolvers } = require("./schema");
 
-
 const app = express();
 app.use(express.json());
-app.get('/', (req, res) => res.send('OK!'))
+app.get("/", (req, res) => res.send("OK!"));
 app.post("/", async (req, res) => {
   const { parse, validate, contextFactory, execute, schema } = getEnveloped({
-    req
+    req,
   });
 
   // Parse the initial request and validate it
@@ -28,7 +26,7 @@ app.post("/", async (req, res) => {
     document,
     schema,
     variableValues: variables,
-    contextValue: context
+    contextValue: context,
   });
 
   // Send the response
@@ -44,11 +42,13 @@ app.listen(port, () => {
 const server = new ApolloServer({ typeDefs: gql(typeDefs), resolvers });
 
 // The `listen` method launches a web server.
-server.listen({
-  port: 3000,
-}).then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+server
+  .listen({
+    port: 3000,
+  })
+  .then(({ url }) => {
+    console.log(`🚀  Server ready at ${url}`);
+  });
 
 // ab -n 20000 -c 3 -X -rk 'http://localhost:8080/' -H 'Content-Type: application/json' --data-raw '{ "query": "query test { hello }" }'
 // ab -n 20000 -c 3 -p query.json -T application/json -rk http://localhost:8080
