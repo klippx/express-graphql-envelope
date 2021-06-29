@@ -17,7 +17,7 @@ app.post("/", async (req, res) => {
   const validationErrors = validate(schema, document);
 
   if (validationErrors.length > 0) {
-    return res.end(JSON.stringify({ errors: validationErrors }));
+    return res.send(JSON.stringify({ errors: validationErrors }));
   }
 
   // Build the context and execute
@@ -30,7 +30,7 @@ app.post("/", async (req, res) => {
   });
 
   // Send the response
-  res.end(JSON.stringify(result));
+  res.send(JSON.stringify(result));
 });
 
 //create a server object:
